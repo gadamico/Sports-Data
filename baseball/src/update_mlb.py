@@ -59,10 +59,10 @@ def update_table(post_teams, lcsp_teams, ws_teams, champ_team, new_year):
     post = pd.read_excel('../Sports-Data/mlb_playoff_droughts/MLBPlayoffDroughts.xls', sheet_name=3)
     """
     
-    post = pd.read_csv('mlb_playoff_droughts/postseason_droughts.csv')
-    lcsp = pd.read_csv('mlb_playoff_droughts/lcsp_droughts.csv')
-    ws = pd.read_csv('mlb_playoff_droughts/ws_droughts.csv')
-    champ = pd.read_csv('mlb_playoff_droughts/champ_droughts.csv')
+    post = pd.read_csv('./baseball/data/postseason_droughts.csv')
+    lcsp = pd.read_csv('./baseball/data/lcsp_droughts.csv')
+    ws = pd.read_csv('./baseball/data/ws_droughts.csv')
+    champ = pd.read_csv('./baseball/data/champ_droughts.csv')
     
     # Extract last year's num from parens
     post = replace_last_latest(post)
@@ -131,7 +131,7 @@ def update_table(post_teams, lcsp_teams, ws_teams, champ_team, new_year):
     champ = new_ver(champ)
 
     # Re-create .csv files
-    post.to_csv('mlb_playoff_droughts/postseason_droughts.csv', index=False)
-    lcsp.to_csv('mlb_playoff_droughts/lcsp_droughts.csv', index=False)
-    ws.to_csv('mlb_playoff_droughts/ws_droughts.csv', index=False)
-    champ.to_csv('mlb_playoff_droughts/champ_droughts.csv', index=False)
+    post.to_csv('./baseball/data/postseason_droughts.csv', index=False)
+    lcsp.to_csv('./baseball/data/lcsp_droughts.csv', index=False)
+    ws.to_csv('./baseball/data/ws_droughts.csv', index=False)
+    champ.to_csv('./baseball/data/champ_droughts.csv', index=False)
