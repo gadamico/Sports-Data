@@ -139,3 +139,6 @@ cython_debug/
 
 # DS Store
 .DS_Store
+
+# unwanted data
+baseballdatabank-2023.1
