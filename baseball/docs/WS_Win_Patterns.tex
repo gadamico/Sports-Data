@@ -1,0 +1,177 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[linguistics]{forest}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}
+\usepackage{pdflscape}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex
+								
+%\usepackage{{Gratzer-Color-Scheme}	% Active to color theorems red and lemmas blue
+	
+\usepackage{amssymb}
+
+%SetFonts
+
+%SetFonts
+
+
+\title{World Series Win Pattern Frequencies}
+\author{Greg A. Damico}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+1. WS winner wins Games 1, 2, 3 (23):
+
+\begin{forest}
+		[WWW
+			[WWWW (19)]
+			[WWWL
+				[WWWLW (4)]
+				[WWWLL
+					[WWWLLW (0)]
+					[WWWLLL
+						[WWWLLLW (0)]]]]]
+\end{forest}
+\\
+\\
+
+2. WS winner wins Games 1, 2; loses Game 3 (20):
+
+\begin{forest}
+		[WWL
+			[WWLW
+				[WWLWW (9)]
+				[WWLWL
+					[WWLWLW (1)]
+					[WWLWLL
+						[WWLWLLW (1)]]]]
+			[WWLL
+				[WWLLW
+					[WWLLWW (4)]
+					[WWLLWL
+						[WWLLWLW (1)]]]
+				[WWLLL
+					[WWLLLW
+						[WWLLLWW (4)]]]]]
+\end{forest}
+\\
+\\
+
+3. WS winner wins Games 1, 3; loses Game 2 (24):
+
+\begin{forest}
+		[WLW
+			[WLWW
+				[WLWWW (11)]
+				[WLWWL
+					[WLWWLW (4)]
+					[WLWWLL
+						[WLWWLLW (1)]]]]
+			[WLWL
+				[WLWLW
+					[WLWLWW (2)]
+					[WLWLWL
+						[WLWLWLW (3)]]]
+				[WLWLL
+					[WLWLLW
+						[WLWLLWW (3)]]]]]
+\end{forest}
+\\
+\\
+
+4. WS winner wins Game 1; loses Games 2, 3 (5):
+
+\begin{forest}
+		[WLL
+			[WLLW
+				[WLLWW
+					[WLLWWW (2)]
+					[WLLWWL
+						[WLLWWLW (3)]]]
+				[WLLWL
+					[WLLWLW
+						[WLLWLWW (0)]]]]
+			[WLLL
+				[WLLLW
+					[WLLLWW
+						[WLLLWWW (0)]]]]]]]
+\end{forest}
+\\
+\\
+
+5. WS winner loses Game 1; wins Games 2, 3 (18):
+
+\begin{forest}
+		[LWW
+			[LWWW
+				[LWWWW (4)]
+				[LWWWL
+					[LWWWLW (7)]
+					[LWWWLL
+						[LWWWLLW (0)]]]]
+			[LWWL
+				[LWWLW
+					[LWWLWW (0)]
+					[LWWLWL
+						[LWWLWLW (3)]]]
+				[LWWLL
+					[LWWLLW
+						[LWWLLWW (4)]]]]]
+\end{forest}
+\\
+\\
+
+6. WS winner loses Games 1, 3; wins Game 2 (14):
+
+\begin{forest}
+		[LWL
+			[LWLW
+				[LWLWW
+					[LWLWWW (4)]
+					[LWLWWL
+						[LWLWWLW (1)]]]
+				[LWLWL
+					[LWLWLW
+						[LWLWLWW (5)]]]]
+			[LWLL
+				[LWLLW
+					[LWLLWW
+						[LWLLWWW (4)]]]]]]
+\end{forest}
+\\
+\\
+
+7. WS winner loses Games 1, 2; wins Game 3 (10):
+
+\begin{forest}
+		[LLW
+			[LLWW
+				[LLWWW
+					[LLWWWW (3)]
+					[LLWWWL
+						[LLWWWLW (4)]]]
+				[LLWWL
+					[LLWWLW
+						[LLWWLWW (1)]]]]
+			[LLWL
+				[LLWLW
+					[LLWLWW
+						[LLWLWWW (2)]]]]]
+\end{forest}
+\\
+\\
+
+8. WS winner loses Games 1, 2, 3 (0):
+
+\begin{forest}
+		[LLL
+			[LLLW
+				[LLLWW
+					[LLLWWW
+						[LLLWWWW (0)]]]]]]]
+\end{forest}
+\end{document}  
