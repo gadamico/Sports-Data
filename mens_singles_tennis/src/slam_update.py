@@ -15,14 +15,14 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
     import pandas as pd
     
     # Connect to the db
-    con = sqlite3.connect('~/Fun/Sports-Data/mens_singles_tennis/data/tennis.db')
+    con = sqlite3.connect('/Users/gadamico/Fun/Sports-Data/mens_singles_tennis/data/tennis.db')
     
     # Access the relevant columns
     gen_totals = [2, 3, 4, 5]
         
     slam_col_dict = {'aus': 6, 'fr': 10, 'wim': 14, 'us': 18}
     
-    spec_totals = slam_col_dict[which_slam]:slam_col_dict[which_slam]+4
+    spec_totals = range(slam_col_dict[which_slam], slam_col_dict[which_slam]+4)
     
     # Prepare proper SQL queries
     slam_pref_dict = {'aus': 'Aus_', 'fr': 'Fr_', 'wim': 'Wim_', 'us': 'US_'}
@@ -35,7 +35,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
         f"""
         SELECT *
         FROM mens_tennis
-        WHERE Player = {champ}
+        WHERE Player = '{champ}'
         """,
         con
     )
@@ -57,10 +57,10 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             F_Wins = {plyr_gen_totals[3]+1},
             {pref}QF_Appears = {plyr_spec_totals[0]+1},
             {pref}QF_Wins = {plyr_spec_totals[1]+1},
-            {pref}SF_Wins = {plyr_spec_total[2]+1},
-            {pref}F_Wins = {plyr_spec_total[3]+1},
+            {pref}SF_Wins = {plyr_spec_totals[2]+1},
+            {pref}F_Wins = {plyr_spec_totals[3]+1},
 
-            WHERE Player = {champ}
+            WHERE Player = '{champ}'
             """
             )
     
@@ -83,7 +83,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {champ}, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
+                VALUES ({new_no}, '{champ}', 1, 1, 1, 1, 1, 1, 1, 1, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 """
                 )
@@ -93,7 +93,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {champ}, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1,
+                VALUES ({new_no}, '{champ}', 1, 1, 1, 1, 0, 0, 0, 0, 1, 1,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
                 """
                 )
@@ -103,7 +103,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {champ}, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+                VALUES ({new_no}, '{champ}', 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
                 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
                 """
                 )
@@ -113,7 +113,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {champ}, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+                VALUES ({new_no}, '{champ}', 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 1, 1, 1, 1)
                 """
                 )
@@ -124,7 +124,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
         f"""
         SELECT *
         FROM mens_tennis
-        WHERE Player = {runner_up}
+        WHERE Player = '{runner_up}'
         """
         ,
         con
@@ -147,7 +147,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             {pref}QF_Wins = {plyr_spec_totals[1]+1},
             {pref}SF_Wins = {plyr_spec_total[2]+1}
 
-            WHERE Player = {runner_up}
+            WHERE Player = '{runner_up}'
             """
             )
 
@@ -170,7 +170,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {runner_up}, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0,
+                VALUES ({new_no}, '{runner_up}', 1, 1, 1, 0, 1, 1, 1, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 """
                 )
@@ -180,7 +180,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {runner_up}, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
+                VALUES ({new_no}, '{runner_up}', 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
                 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 """
                 )
@@ -190,7 +190,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {runner_up}, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+                VALUES ({new_no}, '{runner_up}', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 1, 1, 1, 0, 0, 0, 0, 0)
                 """
                 )
@@ -200,7 +200,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
             con.execute(
                 f"""
                 INSERT INTO mens_tennis
-                VALUES ({new_no}, {runner_up}, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+                VALUES ({new_no}, '{runner_up}', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 1, 1, 1, 0)
                 """
                 )
@@ -213,7 +213,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
         f"""
         SELECT *
         FROM mens_tennis
-        WHERE Player = {player}
+        WHERE Player = '{player}'
         """
         ,
         con
@@ -234,7 +234,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 {pref}QF_Appears = {plyr_spec_totals[0]+1},
                 {pref}QF_Wins = {plyr_spec_totals[1]+1}
 
-                WHERE Player = {player}
+                WHERE Player = '{player}'
                 """
                 )
 
@@ -257,7 +257,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0,
+                    VALUES ({new_no}, '{player}', 1, 1, 0, 0, 1, 1, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                     """
                     )
@@ -267,7 +267,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,
+                    VALUES ({new_no}, '{player}', 1, 1, 0, 0, 0, 0, 0, 0, 1, 1,
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                     """
                     )
@@ -277,7 +277,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+                    VALUES ({new_no}, '{player}', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
                     """
                     )
@@ -287,7 +287,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+                    VALUES ({new_no}, '{player}', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 1, 1, 0, 0)
                     """
                     )
@@ -299,7 +299,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
         f"""
         SELECT *
         FROM mens_tennis
-        WHERE Player = {player}
+        WHERE Player = '{player}'
         """
         ,
         con
@@ -318,7 +318,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 SET QF_Appears = {plyr_gen_totals[0]+1},
                 {pref}QF_Appears = {plyr_spec_totals[0]+1}
 
-                WHERE Player = {player}
+                WHERE Player = '{player}'
                 """
                 )
 
@@ -341,7 +341,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+                    VALUES ({new_no}, '{player}', 1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                     """
                     )
@@ -351,7 +351,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+                    VALUES ({new_no}, '{player}', 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                     """
                     )
@@ -361,7 +361,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                    VALUES ({new_no}, '{player}', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
                     """
                     )
@@ -371,7 +371,7 @@ def update_db(champ, runner_up, losing_sfs, losing_qfs, which_slam='aus'):
                 con.execute(
                     f"""
                     INSERT INTO mens_tennis
-                    VALUES ({new_no}, {player}, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                    VALUES ({new_no}, '{player}', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
                     """
                     )
